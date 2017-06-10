@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: authApi
+        psr4_prefix: authApi
+        src_path: app
