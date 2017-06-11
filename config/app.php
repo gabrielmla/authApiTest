@@ -145,6 +145,9 @@ return [
         authApi\Providers\EventServiceProvider::class,
         authApi\Providers\RouteServiceProvider::class,
 
+        //laravel-cors
+        Barryvdh\Cors\ServiceProvider::class,
+
     ],
 
     /*
