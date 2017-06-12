@@ -18,12 +18,12 @@ class UserController extends Controller
         $user = User::where('email', $email)->where('password', $password)->first();
 
         if ($user) {
-            return response()->json($user);
+            return response()->json($user, 200);
         } else {
             if ($this->verifyEmail($email)) {
-                return response('E-mail não encontrado.');
+                return response('E-mail não encontrado.', 400);
             } else {
-                return response('Senha incorreta.');
+                return response('Senha incorreta.', 400);
             }
         }
     }
@@ -57,17 +57,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         if (!$this->verifyEmail($request->email)) {
-            return response('E-mail em uso.');
+            return response('E-mail em uso.', 400);
         } else {
             $user = new User;
             $user->fill($request->all());
             $saved = $user->save();
 
             if (!$saved) {
-                return response('Falha no registro.');
+                return response('Falha no registro.', 400);
             }
 
-            return response('Registrado com sucesso.');
+            return response('Registrado com sucesso.', 200);
         }
     }
 
